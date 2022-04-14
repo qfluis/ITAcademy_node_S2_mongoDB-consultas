@@ -4,8 +4,6 @@
   "description": "fichero queries.js\r ```\r npm run queries\r ```",
   "main": "index.js",
   "scripts": {
-    "load_data": "mongo restaurant load_data.js",
-    "queries": "mongo restaurant queries.js"
   },
   "repository": {
     "type": "git",
