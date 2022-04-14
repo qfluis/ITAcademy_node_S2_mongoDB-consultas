@@ -27,12 +27,7 @@ db.restaurants.find().sort({name: -1}); // 26 - Escriu una consulta per organitz
 db.restaurants.find().sort({cuisine: 1, borough: -1}); // 27 - Escriu una consulta per organitzar el nom de la cuisine en ordre ascendent i el barri en ordre descendent
 db.restaurants.find({ "address.street": false },{name: 1, address: 1}); // Parece que todas las calles están...¿? // 28 - Escriu una consulta per saber si les direccions contenen el carrer
 db.restaurants.find({ "address.coord.0": { $type: 1 }}); // parece que todos son double...¿? // 29 - Escriu una consulta que seleccioni tots el documents en la col·lecció de restaurants on els valors del camp coord és de tipus Double
-db.restaurants.find({ grades: { $elemMatch: { score: {$gt: 100} } } },{ restaurant_id: 1, name: 1, grades: 1 });
-// https://www.mongodb.com/docs/manual/reference/operator/aggregation/group/   30 - Escriu una consulta que seleccioni el restaurant_id, name i grade per a aquells restaurants que retornen 0 com a residu després de dividir algun dels seus score per 7
-
-
-
-
+db.restaurants.find({ grades: { $elemMatch: { score: { $mod: [7,0] } } } },{ restaurant_id: 1, name: 1, grades: 1 }); // 30 - Escriu una consulta que seleccioni el restaurant_id, name i grade per a aquells restaurants que retornen 0 com a residu després de dividir algun dels seus score per 7
 db.restaurants.find({ name : /mon/ },{name: 1, borough: 1, "address.coord": 1, cuisine: 1}); // 31 - Escriu una consulta per trobar el name de restaurant, borough, longitud, latitud i cuisine per a aquells restaurants que contenen 'mon' en algun lloc del seu name
 db.restaurants.find({ name : /^Mad/ },{name: 1, borough: 1, "address.coord": 1, cuisine: 1}); // 32 - Escriu una consulta per trobar el name de restaurant, borough, longitud, latitud i cuisine per a aquells restaurants que conteinen 'Mad' com a primeres tres lletres del seu name
 
